@@ -1,0 +1,134 @@
+---
+import { Image } from "astro:assets";
+import FormattedDate from "./FormattedDate.astro";
+
+interface Props {
+  title: string;
+  lead: string;
+  articles: any[];
+}
+
+const { title, lead, articles } = Astro.props;
+---
+
+<section class="container articles-section">
+  <div class="articles-heading">
+    <h2>{title}</h2>
+    <p>{lead}</p>
+  </div>
+
+  <div class="articles-grid">
+    {
+      articles.map((post) => (
+        <a class="article-card bubble-card-alt" href={`/blog/${post.id}/`}>
+          {post.data.heroImage && (
+            <Image
+              src={post.data.heroImage}
+              alt={post.data.title}
+              width={800}
+              height={420}
+              class="article-image"
+            />
+          )}
+
+          <div class="article-body">
+            <p class="article-date">
+              <FormattedDate date={post.data.pubDate} />
+            </p>
+            <h3>{post.data.title}</h3>
+            <p>{post.data.shortDescription}</p>
+            <span class="article-link">Lire l'article complet</span>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .articles-section {
+    margin-top: 3rem;
+  }
+
+  .articles-heading {
+    margin-bottom: 1.25rem;
+  }
+
+  .articles-heading h2 {
+    font-size: clamp(1.5rem, 1.2rem + 1vw, 2.2rem);
+    margin-bottom: 0.45rem;
+  }
+
+  .articles-heading p {
+    color: var(--text-muted);
+    max-width: 68ch;
+  }
+
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .article-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--surface-soft);
+    box-shadow: var(--shadow-soft);
+    color: inherit;
+    min-height: 100%;
+    text-decoration: none;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .article-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-strong);
+  }
+
+  .article-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .article-body {
+    display: grid;
+    gap: 0.7rem;
+    padding: 1.25rem;
+  }
+
+  .article-date {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.93rem;
+  }
+
+  .article-body h3 {
+    font-size: 1.2rem;
+    line-height: 1.2;
+  }
+
+  .article-body p {
+    color: var(--text-muted);
+  }
+
+  .article-link {
+    width: fit-content;
+    padding: 0.45rem 0.8rem;
+    border-radius: 999px;
+    background: var(--surface-container);
+    color: var(--primary);
+    font-weight: 700;
+  }
+
+  @media (max-width: 820px) {
+    .articles-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

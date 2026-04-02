@@ -1,0 +1,84 @@
+---
+import HeroBlock from "../components/HeroBlock.astro";
+import ProgramGrid from "../components/ProgramGrid.astro";
+import LogoLarge from "../assets/logo_large.png";
+import LogoSmall from "../assets/logo.png";
+import siteInfo from "../data/site_info.json";
+import SiteLayout from "../layouts/SiteLayout.astro";
+
+type HeroAction = {
+  href: string;
+  label: string;
+  variant?: "primary" | "secondary";
+};
+
+const mediationCopy = {
+  metaTitle: "Mediation | Génération Femmes",
+  metaDescription:
+    "Médiation sociale, accompagnement administratif et médiation scolaire à Evry-Courcouronnes.",
+  heroBadge: "Médiation sociale de proximité",
+  heroTitle: "Dialoguer",
+  heroHighlight: "pour ouvrir les droits",
+  heroDescription:
+    "Notre équipe accompagne chaque personne dans ses démarches et favorise des relations de confiance avec les institutions. En 2024, 3580 accompagnements ont été réalisés.",
+  programGridTitle: "Comment nous intervenons",
+  programGridLead:
+    "Des formats de médiation adaptés aux besoins des habitants et des familles.",
+};
+
+const page = siteInfo.pages.mediation;
+const mediationHeroActions: HeroAction[] = [
+  { href: "/contact", label: "Parler à un médiateur", variant: "primary" },
+  { href: "/actions", label: "Voir toutes les actions", variant: "secondary" },
+];
+
+const mediationPrograms = [
+  {
+    title: "Médiation sociale",
+    description:
+      "Accompagnement de proximité pour rétablir le dialogue, faciliter l'accès aux droits et renforcer la confiance.",
+    tag: "Cohésion sociale",
+  },
+  {
+    title: "Accompagnement administratif",
+    description:
+      "Aide pour les titres de séjour, CAF, France Travail, prise de rendez-vous et suivi de dossiers.",
+    tag: "Accès aux droits",
+  },
+  {
+    title: "Médiation scolaire",
+    description:
+      "Convention avec 5 collèges pour fluidifier la communication entre familles et équipes pédagogiques.",
+    tag: "Partenariats",
+  },
+  {
+    title: "Accompagnement mobile",
+    description:
+      "Accompagner les usagers à actualiser leurs dossiers depuis leur téléphone.",
+    tag: "Numérique utile",
+  },
+];
+
+const mediationImage = page.hero.image === "logo" ? LogoSmall : LogoLarge;
+---
+
+<SiteLayout
+  title={mediationCopy.metaTitle}
+  description={mediationCopy.metaDescription}
+>
+  <HeroBlock
+    badge={mediationCopy.heroBadge}
+    title={mediationCopy.heroTitle}
+    highlight={mediationCopy.heroHighlight}
+    description={mediationCopy.heroDescription}
+    image={mediationImage}
+    imageAlt={siteInfo.association.name}
+    actions={mediationHeroActions}
+  />
+
+  <ProgramGrid
+    title={mediationCopy.programGridTitle}
+    lead={mediationCopy.programGridLead}
+    programs={mediationPrograms}
+  />
+</SiteLayout>

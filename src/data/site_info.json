@@ -1,0 +1,150 @@
+{
+  "association": {
+    "name": "Génération Femmes",
+    "baseline": "La médiation à cœur"
+  },
+  "volunteerProgram": {
+    "activities": [
+      "Cours de français",
+      "Ateliers informatique",
+      "Sorties culturelles"
+    ]
+  },
+  "governance": {
+    "directorMissions": [
+      "Recherche de subventions et suivi des bilans",
+      "Coordination de l'équipe",
+      "Mise en œuvre des orientations du conseil d'administration"
+    ]
+  },
+  "contact": {
+    "phone": "01 77 97 04 61",
+    "email": "generation-femmes@club-internet.fr"
+  },
+  "pages": {
+    "home": {
+      "hero": {
+        "badge": "Depuis 1992 à Evry-Courcouronnes",
+        "title": "Accueillir, relier",
+        "highlight": "ouvrir les droits",
+        "image": "logo",
+        "actions": [
+          {
+            "href": "/actions",
+            "label": "Découvrir nos actions",
+            "variant": "primary"
+          },
+          {
+            "href": "/contact",
+            "label": "Nous contacter",
+            "variant": "secondary"
+          }
+        ]
+      },
+      "stats": {
+        "items": [
+          {
+            "value": "545",
+            "label": "adhérents mobilisés",
+            "detail": "Participation active à la vie associative."
+          },
+          {
+            "value": "3580+",
+            "label": "accompagnements en 2024",
+            "detail": "Un accompagnement social et administratif en hausse."
+          },
+          {
+            "value": "780",
+            "label": "collégiens touchés en 2023",
+            "detail": "Actions de prévention et de médiation scolaire."
+          },
+          {
+            "value": "11",
+            "label": "bénévoles engagés",
+            "detail": "Transmission, cours de français et soutien de proximité."
+          }
+        ]
+      },
+      "quoteCta": {
+        "actions": [
+          {
+            "href": "tel:0177970461",
+            "label": "01 77 97 04 61",
+            "variant": "primary"
+          },
+          {
+            "href": "mailto:generation-femmes@club-internet.fr",
+            "label": "Nous écrire",
+            "variant": "secondary"
+          }
+        ]
+      }
+    },
+    "actions": {
+      "stats": {
+        "items": [
+          {
+            "value": "2796+",
+            "label": "cas d'accompagnement en 2023",
+            "detail": "Accompagnement social et administratif de terrain."
+          },
+          {
+            "value": "3580+",
+            "label": "accompagnements en 2024",
+            "detail": "Progression de l'activité d'accès aux droits."
+          },
+          {
+            "value": "780",
+            "label": "collégiens aidés en 2023",
+            "detail": "Actions de prévention et ateliers éducatifs."
+          },
+          {
+            "value": "390",
+            "label": "collégiens sensibilisés en 2024",
+            "detail": "Interventions en milieu scolaire et parentalité."
+          }
+        ]
+      }
+    },
+    "about": {
+      "stats": {
+        "items": [
+          {
+            "value": "1992",
+            "label": "année de création",
+            "detail": "Présence locale continue à Evry-Courcouronnes."
+          },
+          {
+            "value": "545",
+            "label": "adhérents votants",
+            "detail": "Participation active à la vie associative."
+          },
+          {
+            "value": "32+",
+            "label": "ans de terrain",
+            "detail": "Un ancrage historique dans le quartier."
+          },
+          {
+            "value": "5",
+            "label": "partenariats établissements",
+            "detail": "Conventions pour soutenir le lien école-famille."
+          }
+        ]
+      }
+    },
+    "mediation": {
+      "hero": {
+        "image": "logo_large"
+      }
+    },
+    "contact": {
+      "stats": {
+        "nombreBenevoles": "11",
+        "adherentsMobilises": "545",
+        "prixCotisation": "15 €/an",
+        "nbAccompagnements": "3580+",
+        "anneeReference": 1992
+      }
+    }
+  }
+}

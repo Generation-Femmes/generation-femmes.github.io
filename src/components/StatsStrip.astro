@@ -1,0 +1,82 @@
+---
+interface Stat {
+  value: string;
+  label: string;
+  detail?: string;
+}
+
+interface Props {
+  title: string;
+  lead?: string;
+  stats: Stat[];
+}
+
+const { title, lead, stats } = Astro.props;
+---
+
+<section class="stats-block">
+  <div class="container">
+    <h2 class="section-title">{title}</h2>
+    {lead && <p class="section-lead">{lead}</p>}
+    <div class="grid stats-grid">
+      {
+        stats.map((stat, index) => (
+          <article
+            class={`stat-card ${index % 2 === 0 ? "bubble-card" : "bubble-card-alt"}`}
+          >
+            <strong>{stat.value}</strong>
+            <h3>{stat.label}</h3>
+            {stat.detail && <p>{stat.detail}</p>}
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .stats-block {
+    background: var(--surface-low);
+  }
+
+  .stats-grid {
+    margin-top: 1.6rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .stat-card {
+    padding: 1.5rem;
+    background: var(--surface-card);
+    box-shadow: var(--shadow-soft);
+  }
+
+  strong {
+    display: block;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 0.55rem;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 980px) {
+    .stats-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

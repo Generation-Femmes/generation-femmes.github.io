@@ -1,0 +1,358 @@
+{
+  "content_path": "src/content/blog",
+  "assets_path": "src/assets",
+  "frontmatter": {
+    "title": {
+      "label": "Titre de l'article",
+      "type": "short-text",
+      "description": "Le titre de l'article."
+    },
+    "description": {
+      "label": "Description",
+      "type": "long-text",
+      "description": "Le texte descriptif principal de l'article."
+    },
+    "shortDescription": {
+      "label": "Courte description",
+      "type": "long-text",
+      "description": "Le résumé affiché dans les cartes d'articles."
+    },
+    "pubDate": {
+      "label": "Date de publication",
+      "type": "short-text",
+      "description": "La date utilisée pour l'ordre d'affichage des articles."
+    },
+    "heroImage": {
+      "label": "Image principale",
+      "type": "image",
+      "description": "L'image mise en avant dans la carte et dans l'article."
+    }
+  },
+  "settings_file": "src/data/site_info.json",
+  "schema": {
+    "association": {
+      "label": "Association",
+      "type": "object",
+      "fields": {
+        "name": {
+          "label": "Nom",
+          "type": "short-text"
+        },
+        "baseline": {
+          "label": "Signature",
+          "type": "short-text"
+        }
+      }
+    },
+    "volunteerProgram": {
+      "label": "Bénévolat",
+      "type": "object",
+      "fields": {
+        "activities": {
+          "label": "Activités",
+          "type": "list",
+          "itemSchema": {
+            "label": "Activité",
+            "type": "short-text"
+          }
+        }
+      }
+    },
+    "governance": {
+      "label": "Gouvernance",
+      "type": "object",
+      "fields": {
+        "directorMissions": {
+          "label": "Missions de la directrice",
+          "type": "list",
+          "itemSchema": {
+            "label": "Mission",
+            "type": "short-text"
+          }
+        }
+      }
+    },
+    "contact": {
+      "label": "Contact",
+      "type": "object",
+      "fields": {
+        "phone": {
+          "label": "Téléphone",
+          "type": "short-text"
+        },
+        "email": {
+          "label": "E-mail",
+          "type": "short-text"
+        }
+      }
+    },
+    "pages": {
+      "label": "Pages du site",
+      "type": "object",
+      "fields": {
+        "home": {
+          "label": "Accueil",
+          "type": "object",
+          "fields": {
+            "hero": {
+              "label": "Hero",
+              "type": "object",
+              "fields": {
+                "badge": {
+                  "label": "Badge",
+                  "type": "short-text"
+                },
+                "title": {
+                  "label": "Titre",
+                  "type": "short-text"
+                },
+                "highlight": {
+                  "label": "Accroche",
+                  "type": "short-text"
+                },
+                "image": {
+                  "label": "Image",
+                  "type": "selection",
+                  "options": [
+                    {
+                      "label": "Logo simple",
+                      "value": "logo"
+                    },
+                    {
+                      "label": "Logo large",
+                      "value": "logo_large"
+                    }
+                  ]
+                },
+                "actions": {
+                  "label": "Boutons",
+                  "type": "list",
+                  "itemSchema": {
+                    "label": "Bouton",
+                    "type": "object",
+                    "fields": {
+                      "href": {
+                        "label": "Lien",
+                        "type": "link"
+                      },
+                      "label": {
+                        "label": "Texte",
+                        "type": "short-text"
+                      },
+                      "variant": {
+                        "label": "Style",
+                        "type": "selection",
+                        "options": [
+                          {
+                            "label": "Principal",
+                            "value": "primary"
+                          },
+                          {
+                            "label": "Secondaire",
+                            "value": "secondary"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "stats": {
+              "label": "Statistiques",
+              "type": "object",
+              "fields": {
+                "items": {
+                  "label": "Cartes",
+                  "type": "list",
+                  "itemSchema": {
+                    "label": "Carte",
+                    "type": "object",
+                    "fields": {
+                      "value": {
+                        "label": "Valeur",
+                        "type": "short-text"
+                      },
+                      "label": {
+                        "label": "Libellé",
+                        "type": "short-text"
+                      },
+                      "detail": {
+                        "label": "Détail",
+                        "type": "long-text"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "quoteCta": {
+              "label": "Bloc contact",
+              "type": "object",
+              "fields": {
+                "actions": {
+                  "label": "Boutons",
+                  "type": "list",
+                  "itemSchema": {
+                    "label": "Bouton",
+                    "type": "object",
+                    "fields": {
+                      "href": {
+                        "label": "Lien",
+                        "type": "link"
+                      },
+                      "label": {
+                        "label": "Texte",
+                        "type": "short-text"
+                      },
+                      "variant": {
+                        "label": "Style",
+                        "type": "selection",
+                        "options": [
+                          {
+                            "label": "Principal",
+                            "value": "primary"
+                          },
+                          {
+                            "label": "Secondaire",
+                            "value": "secondary"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "actions": {
+          "label": "Actions",
+          "type": "object",
+          "fields": {
+            "stats": {
+              "label": "Statistiques",
+              "type": "object",
+              "fields": {
+                "items": {
+                  "label": "Cartes",
+                  "type": "list",
+                  "itemSchema": {
+                    "label": "Carte",
+                    "type": "object",
+                    "fields": {
+                      "value": {
+                        "label": "Valeur",
+                        "type": "short-text"
+                      },
+                      "label": {
+                        "label": "Libellé",
+                        "type": "short-text"
+                      },
+                      "detail": {
+                        "label": "Détail",
+                        "type": "long-text"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "about": {
+          "label": "Association",
+          "type": "object",
+          "fields": {
+            "stats": {
+              "label": "Statistiques",
+              "type": "object",
+              "fields": {
+                "items": {
+                  "label": "Cartes",
+                  "type": "list",
+                  "itemSchema": {
+                    "label": "Carte",
+                    "type": "object",
+                    "fields": {
+                      "value": {
+                        "label": "Valeur",
+                        "type": "short-text"
+                      },
+                      "label": {
+                        "label": "Libellé",
+                        "type": "short-text"
+                      },
+                      "detail": {
+                        "label": "Détail",
+                        "type": "long-text"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "mediation": {
+          "label": "Médiation",
+          "type": "object",
+          "fields": {
+            "hero": {
+              "label": "Hero",
+              "type": "object",
+              "fields": {
+                "image": {
+                  "label": "Image",
+                  "type": "selection",
+                  "options": [
+                    {
+                      "label": "Logo simple",
+                      "value": "logo"
+                    },
+                    {
+                      "label": "Logo large",
+                      "value": "logo_large"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "contact": {
+          "label": "Contact",
+          "type": "object",
+          "fields": {
+            "stats": {
+              "label": "Statistiques",
+              "type": "object",
+              "fields": {
+                "nombreBenevoles": {
+                  "label": "Nombre de bénévoles",
+                  "type": "short-text"
+                },
+                "adherentsMobilises": {
+                  "label": "Adhérents mobilisés",
+                  "type": "short-text"
+                },
+                "prixCotisation": {
+                  "label": "Prix cotisation",
+                  "type": "short-text"
+                },
+                "nbAccompagnements": {
+                  "label": "Nombre d'accompagnements",
+                  "type": "short-text"
+                },
+                "anneeReference": {
+                  "label": "Année de référence",
+                  "type": "short-text"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

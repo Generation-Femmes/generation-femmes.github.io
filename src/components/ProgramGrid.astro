@@ -1,0 +1,94 @@
+---
+interface Program {
+  title: string;
+  description?: string;
+  tag: string;
+}
+
+interface Props {
+  id?: string;
+  title: string;
+  lead?: string;
+  programs: Program[];
+}
+
+const { id, title, lead, programs } = Astro.props;
+---
+
+<section id={id} class="programs">
+  <div class="container">
+    <h2 class="section-title">{title}</h2>
+    {lead && <p class="section-lead">{lead}</p>}
+    <div class="grid program-grid">
+      {
+        programs.map((program, index) => (
+          <article
+            class={`program-card ${index === 1 ? "program-highlight" : ""} ${index % 2 === 0 ? "bubble-card" : "bubble-card-alt"}`}
+          >
+            <span>{program.tag}</span>
+            <h3>{program.title}</h3>
+            <p>{program.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .programs {
+    background: var(--surface);
+  }
+
+  .program-grid {
+    margin-top: 1.5rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .program-card {
+    padding: 1.8rem;
+    background: var(--surface-soft);
+  }
+
+  .program-card span {
+    display: inline-block;
+    padding: 0.2rem 0.65rem;
+    border-radius: var(--radius-pill);
+    background: rgba(29, 108, 87, 0.12);
+    color: var(--primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .program-card h3 {
+    margin-top: 0.75rem;
+    margin-bottom: 0.65rem;
+    font-size: 1.42rem;
+  }
+
+  .program-card p {
+    color: var(--text-muted);
+  }
+
+  .program-highlight {
+    background: var(--primary);
+    color: #fff;
+  }
+
+  .program-highlight span {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+  }
+
+  .program-highlight p {
+    color: rgba(255, 255, 255, 0.84);
+  }
+
+  @media (max-width: 900px) {
+    .program-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

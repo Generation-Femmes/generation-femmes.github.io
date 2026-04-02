@@ -1,0 +1,100 @@
+---
+import { getCollection } from "astro:content";
+import ArticleCardsSection from "../components/ArticleCardsSection.astro";
+import ProgramGrid from "../components/ProgramGrid.astro";
+import StatsStrip from "../components/StatsStrip.astro";
+import siteInfo from "../data/site_info.json";
+import SiteLayout from "../layouts/SiteLayout.astro";
+
+const actionsCopy = {
+  metaTitle: "Nos actions | Génération Femmes",
+  metaDescription:
+    "Découvrez les actions de médiation sociale, d'accompagnement administratif et d'ateliers socio-linguistiques de Génération Femmes.",
+  introTitle: "Nos actions de terrain",
+  introDescription:
+    "Chaque action vise à renforcer l'autonomie, faciliter l'accès aux droits et soutenir les familles dans leur parcours. En 2024, les accompagnements ont atteint 3580 situations.",
+  articlesTitle: "Dernières actions",
+  articlesLead: "Cliquez sur un article pour en savoir plus.",
+  programGridTitle: "Un accompagnement global",
+  programGridLead:
+    "Des interventions concrètes pour répondre aux besoins quotidiens des habitants.",
+  statsTitle: "Des volumes d'accompagnement solides",
+};
+
+const actionPrograms = [
+  {
+    title: "Médiation sociale",
+    description:
+      "Accompagnement de proximité pour rétablir le dialogue, faciliter l'accès aux droits et renforcer la confiance.",
+    tag: "Cohésion sociale",
+  },
+  {
+    title: "Ateliers socio-linguistiques",
+    description:
+      "Cours de français pour gagner en autonomie dans les démarches du quotidien et la vie professionnelle.",
+    tag: "Autonomie",
+  },
+  {
+    title: "Accompagnement administratif",
+    description:
+      "Aide pour les titres de séjour, CAF, France Travail, prise de rendez-vous et suivi de dossiers.",
+    tag: "Accès aux droits",
+  },
+  {
+    title: "Parentalité et école",
+    description:
+      "Médiation entre les équipes pédagogiques et les familles pour fluidifier la communication et soutenir la réussite.",
+    tag: "Éducation",
+  },
+];
+
+const page = siteInfo.pages.actions;
+
+const articles = (await getCollection("blog"))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 4);
+---
+
+<SiteLayout
+  title={actionsCopy.metaTitle}
+  description={actionsCopy.metaDescription}
+>
+  <section>
+    <div class="container intro bubble-card">
+      <h1>{actionsCopy.introTitle}</h1>
+      <p>{actionsCopy.introDescription}</p>
+    </div>
+  </section>
+
+  <ArticleCardsSection
+    title={actionsCopy.articlesTitle}
+    lead={actionsCopy.articlesLead}
+    articles={articles}
+  />
+
+  <ProgramGrid
+    title={actionsCopy.programGridTitle}
+    lead={actionsCopy.programGridLead}
+    programs={actionPrograms}
+  />
+
+  <StatsStrip title={actionsCopy.statsTitle} stats={page.stats.items} />
+</SiteLayout>
+
+<style>
+  .intro {
+    padding: 2rem;
+    background: var(--surface-soft);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .intro h1 {
+    font-size: clamp(2rem, 1.6rem + 1.8vw, 3.1rem);
+    margin-bottom: 0.8rem;
+  }
+
+  .intro p {
+    color: var(--text-muted);
+    max-width: 70ch;
+  }
+</style>

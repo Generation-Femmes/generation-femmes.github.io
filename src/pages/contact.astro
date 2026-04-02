@@ -1,0 +1,150 @@
+---
+import StatsStrip from "../components/StatsStrip.astro";
+import siteInfo from "../data/site_info.json";
+import SiteLayout from "../layouts/SiteLayout.astro";
+
+const contactCopy = {
+  metaTitle: "Contact | Génération Femmes",
+  metaDescription:
+    "Contacter Génération Femmes, rejoindre les bénévoles et soutenir les actions locales de médiation sociale.",
+  cardTitle: "Contact et engagement",
+  cardDescription:
+    "Pour une demande d'accompagnement, un partenariat ou rejoindre l'équipe bénévole, écrivez-nous ou appelez-nous.",
+  infoTitle: "Communication et bénévolat",
+  recruitmentGoal:
+    "Renforcer l'équipe bénévole pour toucher plus de familles chaque année.",
+  statsTitle: "Une dynamique associative solide",
+  statsLead: "Des chiffres qui montrent la capacité d'action de l'association.",
+  statsDetails: [
+    "Une équipe mobilisée toute l'année.",
+    "Une communauté active et solidaire (rapport 2023).",
+    "La cotisation annuelle concerne les cours de français.",
+    "Un niveau d'activité en progression.",
+    "Un ancrage durable sur le territoire.",
+  ],
+};
+
+const page = siteInfo.pages.contact;
+const currentYear = new Date().getFullYear();
+const yearsOfPresence = Math.max(currentYear - page.stats.anneeReference, 0);
+
+const contactStats = [
+  {
+    value: page.stats.nombreBenevoles,
+    label: "bénévoles déjà engagés",
+    detail: contactCopy.statsDetails[0],
+  },
+  {
+    value: page.stats.adherentsMobilises,
+    label: "adhérents mobilisés",
+    detail: contactCopy.statsDetails[1],
+  },
+  {
+    value: page.stats.prixCotisation,
+    label: "cotisation cours de français",
+    detail: contactCopy.statsDetails[2],
+  },
+  {
+    value: page.stats.nbAccompagnements,
+    label: "accompagnements en 2024",
+    detail: contactCopy.statsDetails[3],
+  },
+  {
+    value: `${yearsOfPresence}+`,
+    label: "ans de présence locale",
+    detail: `${yearsOfPresence} années calculées automatiquement depuis ${page.stats.anneeReference}.`,
+  },
+];
+---
+
+<SiteLayout
+  title={contactCopy.metaTitle}
+  description={contactCopy.metaDescription}
+>
+  <section>
+    <div class="container contact-shell">
+      <div class="contact-card bubble-card">
+        <h1>{contactCopy.cardTitle}</h1>
+        <p>{contactCopy.cardDescription}</p>
+        <div class="contact-links">
+          <a
+            class="btn btn-primary"
+            href={`tel:${siteInfo.contact.phone.replace(/\s+/g, "")}`}
+            >{siteInfo.contact.phone}</a
+          >
+          <a class="btn btn-secondary" href={`mailto:${siteInfo.contact.email}`}
+            >{siteInfo.contact.email}</a
+          >
+        </div>
+      </div>
+
+      <article class="bubble-card-alt info-card">
+        <h2>{contactCopy.infoTitle}</h2>
+        <p>{contactCopy.recruitmentGoal}</p>
+        <ul>
+          {
+            siteInfo.volunteerProgram.activities.map((activity) => (
+              <li>{activity}</li>
+            ))
+          }
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <StatsStrip
+    title={contactCopy.statsTitle}
+    lead={contactCopy.statsLead}
+    stats={contactStats}
+  />
+</SiteLayout>
+
+<style>
+  .contact-shell {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 1.3rem;
+  }
+
+  .contact-card,
+  .info-card {
+    background: var(--surface-soft);
+    padding: 2rem;
+  }
+
+  .contact-card h1 {
+    font-size: clamp(2rem, 1.6rem + 1.8vw, 3.1rem);
+    margin-bottom: 0.8rem;
+  }
+
+  .contact-card p,
+  .info-card p {
+    color: var(--text-muted);
+  }
+
+  .contact-links {
+    margin-top: 1.2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  .info-card h2 {
+    margin-bottom: 0.65rem;
+  }
+
+  .info-card ul {
+    margin-top: 1rem;
+    padding-left: 1.2rem;
+  }
+
+  .info-card li {
+    margin-bottom: 0.35rem;
+  }
+
+  @media (max-width: 900px) {
+    .contact-shell {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
