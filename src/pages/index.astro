@@ -2,7 +2,7 @@
 import HeroBlock from "../components/HeroBlock.astro";
 import ProgramGrid from "../components/ProgramGrid.astro";
 import StatsStrip from "../components/StatsStrip.astro";
-import LogoLarge from "../assets/logo_large.png";
+import type { ImageMetadata } from "astro";
 import LogoSmall from "../assets/logo.png";
 import siteInfo from "../data/site_info.json";
 import SiteLayout from "../layouts/SiteLayout.astro";
@@ -54,7 +54,27 @@ const homePrograms = [
   },
 ];
 
-const heroImage = home.hero.image === "logo_large" ? LogoLarge : LogoSmall;
+const assetImageModules = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/**/*.{png,jpg,jpeg,webp,avif,gif}",
+  { eager: true },
+);
+
+const homeImagePath = String(home.hero.image ?? "").trim();
+const imageAliases: Record<string, string> = {
+  logo: "../assets/logo.png",
+  logo_large: "../assets/logo_large.png",
+};
+
+const resolvedHomeImagePath =
+  imageAliases[homeImagePath] ??
+  (homeImagePath.startsWith("src/assets/")
+    ? homeImagePath.replace("src/assets/", "../assets/")
+    : homeImagePath.startsWith("../assets/")
+      ? homeImagePath
+      : `../assets/${homeImagePath.replace(/^\/+/, "")}`);
+
+const resolvedHomeImageModule = assetImageModules[resolvedHomeImagePath];
+const heroImage: ImageMetadata = resolvedHomeImageModule?.default ?? LogoSmall;
 
 const homeHeroActions: HeroAction[] = home.hero.actions.map((action) => ({
   ...action,
