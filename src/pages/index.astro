@@ -60,18 +60,14 @@ const assetImageModules = import.meta.glob<{ default: ImageMetadata }>(
 );
 
 const homeImagePath = String(home.hero.image ?? "").trim();
-const imageAliases: Record<string, string> = {
-  logo: "../assets/logo.png",
-  logo_large: "../assets/logo_large.png",
-};
-
 const resolvedHomeImagePath =
-  imageAliases[homeImagePath] ??
-  (homeImagePath.startsWith("src/assets/")
+  homeImagePath.startsWith("src/assets/")
     ? homeImagePath.replace("src/assets/", "../assets/")
     : homeImagePath.startsWith("../assets/")
       ? homeImagePath
-      : `../assets/${homeImagePath.replace(/^\/+/, "")}`);
+      : homeImagePath
+        ? `../assets/${homeImagePath.replace(/^\/+/, "")}`
+        : "";
 
 const resolvedHomeImageModule = assetImageModules[resolvedHomeImagePath];
 const heroImage: ImageMetadata = resolvedHomeImageModule?.default ?? LogoSmall;
