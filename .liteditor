@@ -112,17 +112,7 @@
                 },
                 "image": {
                   "label": "Image",
-                  "type": "selection",
-                  "options": [
-                    {
-                      "label": "Logo simple",
-                      "value": "logo"
-                    },
-                    {
-                      "label": "Logo large",
-                      "value": "logo_large"
-                    }
-                  ]
+                  "type": "image"
                 },
                 "actions": {
                   "label": "Boutons",
