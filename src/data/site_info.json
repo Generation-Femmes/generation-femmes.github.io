@@ -27,7 +27,7 @@
         "badge": "Depuis 1992 à Evry-Courcouronnes",
         "title": "Accueillir, relier",
         "highlight": "ouvrir les droits",
-        "image": "logo",
+        "image": "src/assets/reports/2024/ra2024-033.png",
         "actions": [
           {
             "href": "/actions",
